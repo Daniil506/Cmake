@@ -21,7 +21,7 @@ option(BTEST "build test?" ON)        # указываем подключаем 
 
 if(BTEST)                             # если тесты подключены         
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-    add_subdirectory("third_party/gtest" EXCLUDE_FROM_ALL)
+    add_subdirectory("googletest" EXCLUDE_FROM_ALL)
     enable_testing()
     add_subdirectory(tests)
 endif()
