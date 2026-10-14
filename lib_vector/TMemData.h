@@ -1,7 +1,7 @@
 // Copyright 2026 Daniil
 
-#ifndef LIB_VECTOR_MEM_DATA_H_
-#define LIB_VECTOR_MEM_DATA_H_
+#ifndef LIB_VECTOR_TMEMDATA_H_
+#define LIB_VECTOR_TMEMDATA_H_
 
 #include <cstddef>
 #include <initializer_list>
@@ -20,14 +20,14 @@ namespace vector_lib {
     class Vector;
 
     template <typename T>
-    class MemData {
+    class TMemData {
     public:
-        explicit MemData(std::size_t size = 0);
-        MemData(std::initializer_list<T> data);
-        MemData(T* data, std::size_t size);
-        MemData(const MemData& other);
-        MemData(MemData&& other);
-        ~MemData();
+        explicit TMemData(std::size_t size = 0);
+        TMemData(std::initializer_list<T> data);
+        TMemData(T* data, std::size_t size);
+        TMemData(const TMemData& other);
+        TMemData(TMemData&& other);
+        ~TMemData();
 
         bool IsEmpty() const noexcept;
         bool IsFull() const noexcept;
@@ -41,8 +41,8 @@ namespace vector_lib {
             std::size_t start_index = 0) noexcept;
         void ClearMemory() noexcept;
 
-        MemData& operator=(const MemData& other) noexcept;
-        MemData& operator=(MemData&& other) noexcept;
+        TMemData& operator=(const TMemData& other) noexcept;
+        TMemData& operator=(TMemData&& other) noexcept;
 
         friend class Vector<T>;
 
@@ -53,39 +53,39 @@ namespace vector_lib {
     };
 
     template <typename T>
-    bool MemData<T>::IsEmpty() const noexcept {
+    bool TMemData<T>::IsEmpty() const noexcept {
         return size_ == 0;
     }
 
     template <typename T>
-    bool MemData<T>::IsFull() const noexcept {
+    bool TMemData<T>::IsFull() const noexcept {
         return size_ == capacity_;
     }
 
     template <typename T>
-    std::size_t MemData<T>::Size() const noexcept {
+    std::size_t TMemData<T>::Size() const noexcept {
         return size_;
     }
 
     template <typename T>
-    std::size_t MemData<T>::Capacity() const noexcept {
+    std::size_t TMemData<T>::Capacity() const noexcept {
         return capacity_;
     }
 
     template <typename T>
-    const T* MemData<T>::Data() const noexcept {
+    const T* TMemData<T>::Data() const noexcept {
         return data_;
     }
 
     template <typename T>
-    MemData<T>::MemData(std::size_t size)
+    TMemData<T>::TMemData(std::size_t size)
         : size_(0),
         capacity_(CalculateCapacity(size)),
         data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
     }
 
     template <typename T>
-    MemData<T>::MemData(std::initializer_list<T> data)
+    TMemData<T>::TMemData(std::initializer_list<T> data)
         : size_(data.size()),
         capacity_(CalculateCapacity(size_)),
         data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
@@ -96,7 +96,7 @@ namespace vector_lib {
     }
 
     template <typename T>
-    MemData<T>::MemData(T* data, std::size_t size)
+    TMemData<T>::TMemData(T* data, std::size_t size)
         : size_(size),
         capacity_(CalculateCapacity(size_)),
         data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
@@ -106,7 +106,7 @@ namespace vector_lib {
     }
 
     template <typename T>
-    MemData<T>::MemData(const MemData& other)
+    TMemData<T>::TMemData(const TMemData& other)
         : size_(other.size_),
         capacity_(other.capacity_),
         data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
@@ -116,7 +116,7 @@ namespace vector_lib {
     }
 
     template <typename T>
-    MemData<T>::MemData(MemData&& other)
+    TMemData<T>::TMemData(TMemData&& other)
         : size_(other.size_),
         capacity_(other.capacity_),
         data_(other.data_) {
@@ -126,12 +126,12 @@ namespace vector_lib {
     }
 
     template <typename T>
-    MemData<T>::~MemData() {
+    TMemData<T>::~TMemData() {
         delete[] data_;
     }
 
     template <typename T>
-    void MemData<T>::SetMemory(std::size_t size) noexcept {
+    void TMemData<T>::SetMemory(std::size_t size) noexcept {
         if (capacity_ == CalculateCapacity(size)) {
             size_ = 0;
             return;
@@ -143,7 +143,7 @@ namespace vector_lib {
     }
 
     template <typename T>
-    void MemData<T>::ResetMemory(std::size_t size,
+    void TMemData<T>::ResetMemory(std::size_t size,
         std::size_t start_index) noexcept {
         if (capacity_ == CalculateCapacity(size)) {
             return;
@@ -165,7 +165,7 @@ namespace vector_lib {
     }
 
     template <typename T>
-    void MemData<T>::ClearMemory() noexcept {
+    void TMemData<T>::ClearMemory() noexcept {
         delete[] data_;
         data_ = new T[kMemStep];
         size_ = 0;
@@ -173,7 +173,7 @@ namespace vector_lib {
     }
 
     template <typename T>
-    MemData<T>& MemData<T>::operator=(const MemData<T>& other) noexcept {
+    TMemData<T>& TMemData<T>::operator=(const TMemData<T>& other) noexcept {
         if (&other == this) {
             return *this;
         }
@@ -188,7 +188,7 @@ namespace vector_lib {
     }
 
     template <typename T>
-    MemData<T>& MemData<T>::operator=(MemData<T>&& other) noexcept {
+    TMemData<T>& TMemData<T>::operator=(TMemData<T>&& other) noexcept {
         if (&other == this) {
             return *this;
         }
@@ -204,4 +204,4 @@ namespace vector_lib {
 
 }  // namespace vector_lib
 
-#endif  // LIB_VECTOR_MEM_DATA_H_
+#endif  // LIB_VECTOR_TMEMDATA_H_

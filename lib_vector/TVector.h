@@ -1,7 +1,7 @@
 // Copyright 2026 Daniil
 
-#ifndef LIB_VECTOR_VECTOR_H_
-#define LIB_VECTOR_VECTOR_H_
+#ifndef LIB_VECTOR_TVECTOR_H_
+#define LIB_VECTOR_TVECTOR_H_
 
 #include <cstddef>
 #include <initializer_list>
@@ -83,7 +83,7 @@ namespace vector_lib {
         void ResetMemory(std::size_t new_size);
         void Clear();
 
-        MemData<T> mem_;
+        TMemData<T> mem_;
         std::size_t front_;
         std::size_t back_;
     };
@@ -576,4 +576,4 @@ namespace vector_lib {
 
 }  // namespace vector_lib
 
-#endif  // LIB_VECTOR_VECTOR_H_
+#endif  // LIB_VECTOR_TVECTOR_H_
