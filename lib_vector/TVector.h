@@ -19,7 +19,7 @@ enum class Direction { kLeft, kRight };
 
 template <typename T>
 class Vector {
-public:
+ public:
     explicit Vector(std::size_t size = 0);
     Vector(std::initializer_list<T> data);
     Vector(T* data, std::size_t size);
@@ -68,7 +68,7 @@ public:
     Iterator<T> Begin() { return Iterator<T>(mem_.data_ + front_); }
     Iterator<T> End() { return Iterator<T>(mem_.data_ + front_ + mem_.size_); }
 
-private:
+ private:
     void PushElementsToInsert(std::size_t human_index, Direction direction,
                               std::size_t count = 1);
     void PushElementsToErase(std::size_t human_index, Direction direction,
@@ -135,23 +135,23 @@ T& Vector<T>::Back() {
 
 template <typename T>
 Vector<T>::Vector(std::size_t size)
-    : mem_(size), front_(0), back_(size == 0 ? 0 : size - 1) {}
+: mem_(size), front_(0), back_(size == 0 ? 0 : size - 1) {}
 
 template <typename T>
 Vector<T>::Vector(std::initializer_list<T> data)
-    : mem_(data), front_(0), back_(mem_.size_ == 0 ? 0 : mem_.size_ - 1) {}
+: mem_(data), front_(0), back_(mem_.size_ == 0 ? 0 : mem_.size_ - 1) {}
 
 template <typename T>
 Vector<T>::Vector(T* data, std::size_t size)
-    : mem_(data, size),
-      front_(0),
-      back_(mem_.size_ == 0 ? 0 : mem_.size_ - 1) {}
+: mem_(data, size),
+front_(0),
+back_(mem_.size_ == 0 ? 0 : mem_.size_ - 1) {}
 
 template <typename T>
 Vector<T>::Vector(const Vector<T>& other)
-    : mem_(other.mem_.size_),
-      front_(0),
-      back_(other.mem_.size_ == 0 ? 0 : other.mem_.size_ - 1) {
+: mem_(other.mem_.size_),
+front_(0),
+back_(other.mem_.size_ == 0 ? 0 : other.mem_.size_ - 1) {
     for (std::size_t i = 0; i < other.mem_.size_; ++i) {
         std::size_t other_index = (other.front_ + i) % other.mem_.capacity_;
         mem_.data_[i] = other.mem_.data_[other_index];
@@ -161,7 +161,7 @@ Vector<T>::Vector(const Vector<T>& other)
 
 template <typename T>
 Vector<T>::Vector(Vector<T>&& other)
-    : mem_(std::move(other.mem_)), front_(other.front_), back_(other.back_) {
+: mem_(std::move(other.mem_)), front_(other.front_), back_(other.back_) {
     other.front_ = 0;
     other.back_ = 0;
 }

@@ -19,7 +19,7 @@ class Vector;
 
 template <typename T>
 class TMemData {
-public:
+ public:
     explicit TMemData(std::size_t size = 0);
     TMemData(std::initializer_list<T> data);
     TMemData(T* data, std::size_t size);
@@ -43,7 +43,7 @@ public:
 
     friend class Vector<T>;
 
-private:
+ private:
     std::size_t size_;
     std::size_t capacity_;
     T* data_;
@@ -76,15 +76,15 @@ const T* TMemData<T>::Data() const noexcept {
 
 template <typename T>
 TMemData<T>::TMemData(std::size_t size)
-    : size_(0),
-      capacity_(CalculateCapacity(size)),
-      data_(capacity_ == 0 ? nullptr : new T[capacity_]) {}
+: size_(0),
+capacity_(CalculateCapacity(size)),
+data_(capacity_ == 0 ? nullptr : new T[capacity_]) {}
 
 template <typename T>
 TMemData<T>::TMemData(std::initializer_list<T> data)
-    : size_(data.size()),
-      capacity_(CalculateCapacity(size_)),
-      data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
+: size_(data.size()),
+capacity_(CalculateCapacity(size_)),
+data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
     std::size_t i = 0;
     for (const T& element : data) {
         data_[i++] = element;
@@ -93,9 +93,9 @@ TMemData<T>::TMemData(std::initializer_list<T> data)
 
 template <typename T>
 TMemData<T>::TMemData(T* data, std::size_t size)
-    : size_(size),
-      capacity_(CalculateCapacity(size_)),
-      data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
+: size_(size),
+capacity_(CalculateCapacity(size_)),
+data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
     for (std::size_t i = 0; i < size_; ++i) {
         data_[i] = data[i];
     }
@@ -103,9 +103,9 @@ TMemData<T>::TMemData(T* data, std::size_t size)
 
 template <typename T>
 TMemData<T>::TMemData(const TMemData& other)
-    : size_(other.size_),
-      capacity_(other.capacity_),
-      data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
+: size_(other.size_),
+capacity_(other.capacity_),
+data_(capacity_ == 0 ? nullptr : new T[capacity_]) {
     for (std::size_t i = 0; i < size_; ++i) {
         data_[i] = other.data_[i];
     }
@@ -113,7 +113,7 @@ TMemData<T>::TMemData(const TMemData& other)
 
 template <typename T>
 TMemData<T>::TMemData(TMemData&& other)
-    : size_(other.size_), capacity_(other.capacity_), data_(other.data_) {
+: size_(other.size_), capacity_(other.capacity_), data_(other.data_) {
     other.data_ = nullptr;
     other.size_ = 0;
     other.capacity_ = kMemStep;
