@@ -19,7 +19,7 @@ enum class Direction { kLeft, kRight };
 
 template <typename T>
 class Vector {
- public:
+public:
     explicit Vector(std::size_t size = 0);
     Vector(std::initializer_list<T> data);
     Vector(T* data, std::size_t size);
@@ -68,7 +68,7 @@ class Vector {
     Iterator<T> Begin() { return Iterator<T>(mem_.data_ + front_); }
     Iterator<T> End() { return Iterator<T>(mem_.data_ + front_ + mem_.size_); }
 
- private:
+private:
     void PushElementsToInsert(std::size_t human_index, Direction direction,
                               std::size_t count = 1);
     void PushElementsToErase(std::size_t human_index, Direction direction,

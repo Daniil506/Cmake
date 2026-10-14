@@ -19,7 +19,7 @@ class Vector;
 
 template <typename T>
 class TMemData {
- public:
+public:
     explicit TMemData(std::size_t size = 0);
     TMemData(std::initializer_list<T> data);
     TMemData(T* data, std::size_t size);
@@ -43,7 +43,7 @@ class TMemData {
 
     friend class Vector<T>;
 
- private:
+private:
     std::size_t size_;
     std::size_t capacity_;
     T* data_;
