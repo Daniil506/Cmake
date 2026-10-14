@@ -521,7 +521,8 @@ void Vector<T>::Shuffle() noexcept {
     if (mem_.size_ <= 1) {
         return;
     }
-    static std::mt19937 gen(std::random_device{}());
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
     for (std::size_t i = mem_.size_ - 1; i > 0; --i) {
         std::uniform_int_distribution<std::size_t> dist(0, i);
         std::size_t j = dist(gen);
