@@ -1,6 +1,4 @@
 // Copyright 2026 Daniil
-#include "TMemData.h"
-#include "Iterator.h"
 
 #ifndef LIB_VECTOR_VECTOR_H_
 #define LIB_VECTOR_VECTOR_H_
@@ -12,7 +10,8 @@
 #include <stdexcept>
 #include <utility>
 
-
+#include "Iterator.h"
+#include "TMemData.h"
 
 namespace vector_lib {
 
@@ -58,7 +57,8 @@ namespace vector_lib {
         T& operator[](std::size_t human_index) noexcept;
 
         template <typename U>
-        friend std::ostream& operator<<(std::ostream& os, const Vector<U>& vec);
+        friend std::ostream& operator<<(std::ostream& os,
+            const Vector<U>& vec);
 
         template <typename U>
         friend std::istream& operator>>(std::istream& is, Vector<U>& vec);
@@ -66,8 +66,12 @@ namespace vector_lib {
         void Shuffle() noexcept;
         void SelectionSort() noexcept;
 
-        Iterator<T> Begin() { return Iterator<T>(mem_.data_ + front_); }
-        Iterator<T> End() { return Iterator<T>(mem_.data_ + front_ + mem_.size_); }
+        Iterator<T> Begin() {
+            return Iterator<T>(mem_.data_ + front_);
+        }
+        Iterator<T> End() {
+            return Iterator<T>(mem_.data_ + front_ + mem_.size_);
+        }
 
     private:
         void PushElementsToInsert(std::size_t human_index,
@@ -143,7 +147,8 @@ namespace vector_lib {
 
     template <typename T>
     Vector<T>::Vector(std::initializer_list<T> data)
-        : mem_(data), front_(0), back_(mem_.size_ == 0 ? 0 : mem_.size_ - 1) {
+        : mem_(data), front_(0),
+        back_(mem_.size_ == 0 ? 0 : mem_.size_ - 1) {
     }
 
     template <typename T>
@@ -569,6 +574,6 @@ namespace vector_lib {
         }
     }
 
-}  
+}  // namespace vector_lib
 
-#endif  
+#endif  // LIB_VECTOR_VECTOR_H_

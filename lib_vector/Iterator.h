@@ -76,6 +76,6 @@ namespace vector_lib {
         T* ptr_;
     };
 
-}  
+}  // namespace vector_lib
 
-#endif  
+#endif  // LIB_VECTOR_ITERATOR_H_
