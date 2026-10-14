@@ -14,14 +14,14 @@ include(cmake/function.cmake)         # подхватываем функции,
 								      # и для создания исполняемого проекта в отдельные функции
 
 add_subdirectory(lib_easy_example)    # подключаем дополнительный CMakeLists.txt из подкаталога с именем lib_easy_example
-
+add_subdirectory(lib_vector)
 add_subdirectory(main)                # подключаем дополнительный CMakeLists.txt из подкаталога с именем main
 
 option(BTEST "build test?" ON)        # указываем подключаем ли google-тесты (ON или YES) или нет (OFF или NO)
 
 if(BTEST)                             # если тесты подключены         
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-    add_subdirectory("googletest" EXCLUDE_FROM_ALL)
+    add_subdirectory("third_party/gtest" EXCLUDE_FROM_ALL)
     enable_testing()
     add_subdirectory(tests)
 endif()
