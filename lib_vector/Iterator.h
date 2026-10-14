@@ -1,3 +1,5 @@
+// Copyright 2026 Daniil
+
 #ifndef LIB_VECTOR_ITERATOR_H_
 #define LIB_VECTOR_ITERATOR_H_
 

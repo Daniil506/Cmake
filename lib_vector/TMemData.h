@@ -1,3 +1,4 @@
+// Copyright 2026 Daniil
 #ifndef LIB_VECTOR_MEM_DATA_H_
 #define LIB_VECTOR_MEM_DATA_H_
 
