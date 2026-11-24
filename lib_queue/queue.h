@@ -1,3 +1,5 @@
+// Copyright 2026 Daniil506
+
 #pragma once
 #include <cstddef>
 #include <stdexcept>
@@ -10,8 +12,8 @@ class Queue {
     size_t _front;
     size_t _back;
 
-public:
-    Queue(size_t _size = 1);
+ public:
+    explicit Queue(size_t _size = 1);
     Queue(const Queue& other);
     ~Queue();
 
@@ -25,17 +27,16 @@ public:
 
 template <typename T>
 Queue<T>::Queue(size_t _size)
-    : _size(_size), _count(0), _front(0), _back(0) {
+    : _count(0), _size(_size), _front(0), _back(0) {
     _data = new T[_size];
 }
 
 template <typename T>
 Queue<T>::Queue(const Queue& other)
-    : _size(other._size),
-    _count(other._count),
+    : _count(other._count),
+    _size(other._size),
     _front(0),
     _back(other._size == 0 ? 0 : other._count % other._size) {
-
     _data = new T[_size];
 
     for (size_t i = 0; i < _count; i++) {

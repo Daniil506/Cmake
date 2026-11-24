@@ -1,13 +1,18 @@
-#include <stdexcept>
-#include <cstddef>
+// Copyright 2026 Daniil506
 
-template<typename T>
+#ifndef LIB_STACK_STACK_H_
+#define LIB_STACK_STACK_H_
+
+#include <cstddef>
+#include <stdexcept>
+
+template <typename T>
 class StackOnMass {
     T* _data;
     size_t _size;
     int _top;
 
-public:
+ public:
     explicit StackOnMass(size_t size);
     StackOnMass(const StackOnMass& other);
     size_t get_size();
@@ -23,12 +28,12 @@ public:
     inline bool is_full() const noexcept;
 };
 
-template<typename T>
+template <typename T>
 StackOnMass<T>::StackOnMass(size_t size) : _size(size), _top(-1) {
     _data = new T[_size];
 }
 
-template<typename T>
+template <typename T>
 StackOnMass<T>::StackOnMass(const StackOnMass& other)
     : _size(other._size), _top(other._top) {
     _data = new T[_size];
@@ -38,36 +43,35 @@ StackOnMass<T>::StackOnMass(const StackOnMass& other)
     }
 }
 
-template<typename T>
+template <typename T>
 size_t StackOnMass<T>::get_size() {
     return _size;
 }
 
-template<typename T>
+template <typename T>
 int StackOnMass<T>::get_top() {
     return _top;
 }
 
-template<typename T>
+template <typename T>
 StackOnMass<T>::~StackOnMass() {
     delete[] _data;
 }
 
-template<typename T>
+template <typename T>
 void StackOnMass<T>::push(const T& num) {
     if (is_full()) {
         throw std::out_of_range("StackOnMass::push(): stack is full");
-    }
-    else {
+    } else {
         _data[++_top] = num;
     }
 }
 
-// §®§Ö§ä§à§Õ §Ó§í§ä§Ö§ã§ß§Ö§ß§Ú§ñ
-template<typename T>
+template <typename T>
 void StackOnMass<T>::push_with_eviction(const T& num) {
     if (_size == 0) {
-        throw std::out_of_range("StackOnMass::push_with_eviction(): stack is empty");
+        throw std::out_of_range(
+            "StackOnMass::push_with_eviction(): stack is empty");
     }
 
     T value = num;
@@ -78,38 +82,37 @@ void StackOnMass<T>::push_with_eviction(const T& num) {
         }
 
         _data[_size - 1] = value;
-    }
-    else {
+    } else {
         _data[++_top] = value;
     }
 }
 
-template<typename T>
+template <typename T>
 inline T StackOnMass<T>::pop() {
     if (is_empty()) {
         throw std::out_of_range("StackOnMass::pop(): stack is empty");
-    }
-    else {
+    } else {
         return _data[_top--];
     }
 }
 
-template<typename T>
+template <typename T>
 inline T& StackOnMass<T>::top() {
     if (is_empty()) {
         throw std::out_of_range("StackOnMass::top(): stack is empty");
-    }
-    else {
+    } else {
         return _data[_top];
     }
 }
 
-template<typename T>
+template <typename T>
 inline bool StackOnMass<T>::is_empty() const noexcept {
     return _top == -1;
 }
 
-template<typename T>
+template <typename T>
 inline bool StackOnMass<T>::is_full() const noexcept {
     return _size == 0 || static_cast<size_t>(_top + 1) >= _size;
 }
+
+#endif  // LIB_STACK_STACK_H_

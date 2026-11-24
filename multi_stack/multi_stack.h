@@ -1,9 +1,13 @@
+// Copyright 2026 Daniil506
+
+#ifndef MULTI_STACK_MULTI_STACK_H_
+#define MULTI_STACK_MULTI_STACK_H_
 
 #include <cstddef>
 
 template <typename T>
 class MultiStack {
-   private:
+ private:
     void* _raw_memory;
     T* _data;
     size_t* _L;
@@ -13,7 +17,7 @@ class MultiStack {
     size_t _total_size;
     size_t _count;
 
-   public:
+ public:
     MultiStack(size_t n, size_t size);
     ~MultiStack();
 
@@ -30,3 +34,4 @@ class MultiStack {
     bool is_full(size_t n) const;
 };
 
+#endif  // MULTI_STACK_MULTI_STACK_H_

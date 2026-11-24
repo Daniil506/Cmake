@@ -1,7 +1,8 @@
 // Copyright 2024 Marina Usova
 
+#include "lib_stack_on_mass/StackOnMass.h"
+
 #include <stdexcept>
-#include "../lib_easy_example/easy_example.h"
 
 float division(int a, int b) {
     if (b == 0) {

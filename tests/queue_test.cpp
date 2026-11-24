@@ -1,7 +1,12 @@
-#include <gtest/gtest.h>
-#include "queue.h"
+// Copyright 2026 Daniil506
+
 #include <stdexcept>
 #include <string>
+
+#include <gtest/gtest.h>
+
+#include "lib_queue/queue.h"
+
 TEST(QueueTest, InitialState) {
     Queue<int> q(5);
 

@@ -8,3 +8,5 @@ target_link_libraries(AllTests
 )
 
 add_test(NAME AllTests COMMAND AllTests)
+
+target_include_directories(AllTests PRIVATE ${CMAKE_SOURCE_DIR})
