@@ -1,9 +1,11 @@
 // Copyright 2026 Daniil506
 
-#include "pch.h"
 #include <gtest/gtest.h>
+
 #include <stdexcept>
-#include "queue.h"
+#include <string>
+
+#include "lib_queue/queue.h"
 
 TEST(QueueTest, InitialState) {
     Queue<int> q(5);

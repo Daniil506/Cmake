@@ -1,8 +1,10 @@
 // Copyright 2026 Daniil506
-#include "pch.h"
+
 #include <gtest/gtest.h>
+
 #include <stdexcept>
-#include "stack.h"
+
+#include "lib_stack/stack.h"
 
 TEST(StackOnMassTest, Initialization) {
     StackOnMass<int> stack(5);
